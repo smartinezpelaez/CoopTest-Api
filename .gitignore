@@ -1,0 +1,67 @@
+# Sistema de archivos
+.DS_Store
+Thumbs.db
+
+# Archivos de compilación
+bin/
+obj/
+out/
+build/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+
+# Configuración de usuario de Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.suo
+*.ncb
+*.aps
+*.suo
+*.tlog
+*.ide
+*.vscode/
+
+# Configuración de usuario de Rider
+.idea/
+
+# Archivos de configuración de JetBrains
+*.sln.iml
+
+# Archivos temporales de JetBrains
+*.swp
+
+# Archivos de compilación
+*.app/
+*.apk
+*.aab
+
+# Archivos de caché de NuGet
+.nuget/
+packages/
+*.nupkg
+*.snupkg
+
+# Configuración de NuGet
+NuGet.Config
+NuGet.BuildTasks.dll
+
+# Configuración de usuario de Rider
+*.suo
+*.user
+*.userosscache
+*.suo
+*.tlog
+
+# Archivos generados
+Generated/
+
+# Archivos de dependencias locales
+*.dependency
+
+# Directorios de datos de pruebas
+TestResults/
