@@ -34,23 +34,18 @@ namespace CoopTest.BLL.Services.Implements
             var clienteExistente = await _clienteRepository.GetClienteWithFondosAsync(clienteDTO.Id);
 
             if (clienteExistente == null)
-            {
-                // Crear un nuevo cliente solo si no existe un cliente con el mismo ID
+            {                
                 var cliente = _mapper.Map<Cliente>(clienteDTO);
                 cliente.Fondos = new List<FondoVinculado>(); // Inicializar la lista de fondos
-
-                // Insertar el cliente en la base de datos
+                
                 await _clienteRepository.InsertAsync(cliente);
-
-                // Log para verificar la creación
+                
                 Console.WriteLine($"Cliente creado: {cliente.Id}, Saldo: {cliente.Saldo}");
             }
             else
-            {
-                // Si el cliente ya existe, lanzar una excepción para evitar la creación
+            {                
                 throw new InvalidOperationException($"Ya existe un cliente con el ID: {clienteDTO.Id}. No se puede crear un nuevo cliente con este ID.");
 
-               
             }
         }
 

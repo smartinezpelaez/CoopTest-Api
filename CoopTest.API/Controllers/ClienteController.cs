@@ -22,8 +22,7 @@ namespace CoopTest.API.Controllers
         public async Task<IActionResult> CrearCliente([FromBody] ClienteDTO clienteDTO)
         {
             try
-            {
-                // Crear o actualizar el cliente
+            {                
                 await _clienteService.CrearOActualizarClienteAsync(clienteDTO);
 
                 return Ok(new { mensaje = "Cliente creado con éxito" });
@@ -44,8 +43,7 @@ namespace CoopTest.API.Controllers
         public async Task<IActionResult> SuscribirCliente([FromBody] SuscripcionFondoDTO suscripcionFondoDTO)
         {
             try
-            {
-                // Suscribir el cliente al fondo
+            {                
                 await _clienteService.SuscribirClienteAFondoAsync(suscripcionFondoDTO);
 
                 return Ok(new { mensaje = "Suscripción realizada con éxito" });
