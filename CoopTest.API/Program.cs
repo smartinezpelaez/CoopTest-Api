@@ -10,6 +10,9 @@ using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
+string CorsConfiguration = "_corsConfiguration";
+
+
 // Obtener la cadena de conexión desde la configuración
 builder.Services.AddSingleton<IMongoClient>(sp =>
 {
@@ -51,6 +54,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Configurar CORS
+builder.Services.AddCors(options => {
+    options.AddPolicy(name: CorsConfiguration,
+                      builder => {
+                          builder.WithOrigins("http://localhost:4200")
+                                 .AllowAnyMethod()  // Permitir cualquier método HTTP (GET, POST, etc.)
+                                 .AllowAnyHeader(); // Permitir cualquier cabecera
+                      });
+});
+
 var app = builder.Build();
 
 // Verificar la conexión a MongoDB al iniciar la aplicación
@@ -64,6 +77,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(CorsConfiguration);  // Aplicar la configuración CORS
 
 app.UseHttpsRedirection();
 

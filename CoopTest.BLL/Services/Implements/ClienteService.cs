@@ -12,7 +12,7 @@ namespace CoopTest.BLL.Services.Implements
         private readonly ITransaccionRepository _transaccionRepository;
         private readonly IMapper _mapper;
 
-        private const decimal MontoInicial = 500000m; // Monto inicial en COP
+       
         private const string TipoSuscripcion = "Suscripción";
         private const string TipoCancelacion = "Cancelación";
 
@@ -47,7 +47,11 @@ namespace CoopTest.BLL.Services.Implements
             }
             else
             {
-                // Si el cliente ya existe, actualiza el nombre y el saldo
+                // Si el cliente ya existe, lanzar una excepción para evitar la creación
+                throw new InvalidOperationException($"Ya existe un cliente con el ID: {clienteDTO.Id}. No se puede crear un nuevo cliente con este ID.");
+
+                // Si se quisiera actualizar, se podría descomentar este código:
+                /*
                 clienteExistente.Nombre = clienteDTO.Nombre;
 
                 // Asegurarse de que el saldo recibido es válido
@@ -65,12 +69,10 @@ namespace CoopTest.BLL.Services.Implements
 
                 // Log para verificar la actualización
                 Console.WriteLine($"Cliente actualizado: {clienteExistente.Id}, Saldo: {clienteExistente.Saldo}");
-
-                // Prueba: Verificar el estado del cliente después de la actualización
-                var clienteGuardado = await _clienteRepository.GetClienteWithFondosAsync(clienteDTO.Id);
-                Console.WriteLine($"Cliente actualizado: {clienteGuardado?.Id}, Saldo: {clienteGuardado?.Saldo}");
+                */
             }
         }
+
 
         public async Task SuscribirClienteAFondoAsync(SuscripcionFondoDTO suscripcionFondoDTO)
         {
@@ -144,11 +146,9 @@ namespace CoopTest.BLL.Services.Implements
             await _transaccionRepository.InsertAsync(transaccion);
         }
 
-
-
-        public async Task<IEnumerable<Transaccion>> VerHistorialTransaccionesAsync(string clienteId)
-        {
-            return await _transaccionRepository.GetTransaccionesPorClienteAsync(clienteId);
-        }
+        //public async Task<IEnumerable<Transaccion>> VerHistorialTransaccionesAsync(string clienteId)
+        //{
+        //    return await _transaccionRepository.GetTransaccionesPorClienteAsync(clienteId);
+        //}
     }
 }

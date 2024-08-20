@@ -26,13 +26,18 @@ namespace CoopTest.API.Controllers
                 // Crear o actualizar el cliente
                 await _clienteService.CrearOActualizarClienteAsync(clienteDTO);
 
-                return Ok(new { mensaje = "Cliente creado o actualizado con éxito" });
+                return Ok(new { mensaje = "Cliente creado con éxito" });
             }
-            catch (Exception ex)
+            catch (InvalidOperationException ex)
             {
                 return BadRequest(new { mensaje = ex.Message });
             }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { mensaje = "Ocurrió un error inesperado", detalles = ex.Message });
+            }
         }
+
 
 
         [HttpPost("suscribir-cliente")]
