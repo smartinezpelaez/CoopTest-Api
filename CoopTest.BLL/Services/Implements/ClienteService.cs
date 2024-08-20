@@ -50,26 +50,7 @@ namespace CoopTest.BLL.Services.Implements
                 // Si el cliente ya existe, lanzar una excepción para evitar la creación
                 throw new InvalidOperationException($"Ya existe un cliente con el ID: {clienteDTO.Id}. No se puede crear un nuevo cliente con este ID.");
 
-                // Si se quisiera actualizar, se podría descomentar este código:
-                /*
-                clienteExistente.Nombre = clienteDTO.Nombre;
-
-                // Asegurarse de que el saldo recibido es válido
-                if (clienteDTO.Saldo >= 0)
-                {
-                    clienteExistente.Saldo = clienteDTO.Saldo; // Actualizar el saldo del cliente
-                }
-                else
-                {
-                    throw new ArgumentException("El saldo debe ser un valor no negativo.");
-                }
-
-                // Actualizar el cliente en la base de datos
-                await _clienteRepository.UpdateAsync(clienteExistente.Id, clienteExistente);
-
-                // Log para verificar la actualización
-                Console.WriteLine($"Cliente actualizado: {clienteExistente.Id}, Saldo: {clienteExistente.Saldo}");
-                */
+               
             }
         }
 
@@ -144,11 +125,6 @@ namespace CoopTest.BLL.Services.Implements
             transaccion.IdFondo = fondoId; // Asignar el Id del fondo
 
             await _transaccionRepository.InsertAsync(transaccion);
-        }
-
-        //public async Task<IEnumerable<Transaccion>> VerHistorialTransaccionesAsync(string clienteId)
-        //{
-        //    return await _transaccionRepository.GetTransaccionesPorClienteAsync(clienteId);
-        //}
+        }       
     }
 }

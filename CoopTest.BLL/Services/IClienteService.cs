@@ -7,8 +7,7 @@ namespace CoopTest.BLL.Services
     {
         Task SuscribirClienteAFondoAsync(SuscripcionFondoDTO suscripcionFondoDTO);
         Task CrearOActualizarClienteAsync(ClienteDTO clienteDTO);       
-        Task CancelarSuscripcionAsync(string clienteId, string fondoId);
-        //Task<IEnumerable<Transaccion>> VerHistorialTransaccionesAsync(string clienteId);        
+        Task CancelarSuscripcionAsync(string clienteId, string fondoId);             
     }
 
 }
